@@ -2,6 +2,7 @@ import React from "react"
 import DistanceField from './DistanceField'
 import TimeField from './TimeField'
 import MoneyField from './MoneyField'
+import Restaurant from './Restaurant'
 
 class Form extends React.Component{
   constructor (props){
@@ -10,6 +11,7 @@ class Form extends React.Component{
       distance:'',
       time:'',
       budget:'',
+      restaurant:null
 
     }
     this.handleDistanceChange=this.handleDistanceChange.bind(this)
@@ -17,6 +19,7 @@ class Form extends React.Component{
     this.handleSubmit=this.handleSubmit.bind(this)
     this.clearForm = this.clearForm.bind(this)
     this.handleMoneyChange=this.handleMoneyChange.bind(this)
+    this.handleRestaurantChange=this.handleRestaurantChange.bind(this)
   }
   handleDistanceChange(event){
     this.setState({distance: event.target.value})
@@ -28,6 +31,10 @@ class Form extends React.Component{
 
   handleMoneyChange(event){
     this.setState({budget: event.target.value})
+  }
+
+  handleRestaurantChange(event){
+    this.setState({restaurant: event.target.value})
   }
 
   clearForm(){
@@ -49,6 +56,7 @@ class Form extends React.Component{
       })
       .then(response => {
         if (response.ok) {
+
           return response;
         } else {
           let errorMessage = `${response.status}(${response.statusText})`,
@@ -58,18 +66,26 @@ class Form extends React.Component{
       })
       .then(response => response.json())
       .then(body => {
-        debugger
-        this.setState({distance:body.distance,
-          time: body.time},
-          budget:body.budget
-        )
+        let date= body["businesses"]
+        this.setState({
+          restaurant:date[Math.floor(Math.random() * date.length)]
+        })
       })
+
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     console.log(payload)
     console.log(body)
+    console.log(this.state)
     this.clearForm()
   }
+
   render(){
+    let restaurant;
+    if (this.state.restaurant != null){
+      restaurant=(
+        <Restaurant content={this.state.restaurant} handleChange={this.handleRestaurantChange} />
+      )
+    }
     return(
       <div>
         <form className="dateForm" onSubmit={this.handleSubmit}>
@@ -82,6 +98,7 @@ class Form extends React.Component{
             <MoneyField content={this.state.budget}handleChange={ this.handleMoneyChange} />
           <input type="submit" value="Make Date!" />
         </form>
+        {restaurant}
       </div>
     )
   }

@@ -22,8 +22,10 @@ class Api::V1::RestaurantsController < ApplicationController
     # url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{input}&inputtype=#{inputtype}&fields=#{fields}&key=#{key}"
     # response = HTTParty.get(url)
 
+     zip = params["date"]["distance"]
+     price = params["date"]["budget"]
 
-    url = 'https://api.yelp.com/v3/businesses/search?term=restaurants&location=02136'
+    url = "https://api.yelp.com/v3/businesses/search?term=restaurants&location=#{zip}&price=#{price}"
 
     key= ENV['YELP_KEY']
 
@@ -33,8 +35,18 @@ class Api::V1::RestaurantsController < ApplicationController
       response =HTTParty.get(url, {
         headers: header
         })
-      binding.pry
-      
+          restaurant = response['businesses'].sample
+        
+        restaurants=[]
+      # response.each do |businesses|
+      #   if businesses.last.class.is_a?(Array)
+      #   businesses.last.each do |restaurant|
+      #     puts restaurant
+      #     restaurant.sample
+      #     end
+      #   end
+      # end
+
 
     render json: response
   end

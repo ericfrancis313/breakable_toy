@@ -1,0 +1,30 @@
+body
+  {
+    background: #ade1eb;
+    background-image:
+      radial-gradient(#fff 20%, transparent 0),
+      radial-gradient(#fff 20%, transparent 0);
+    background-size: 400px 400px;
+    background-position: 0 0, 200px 200px;
+  }
+
+.dateForm{
+  border: 1px solid #e2e2e2;
+  box-shadow: 10px 10px 5px #e2e2e2;
+  padding: 1em 5em 1em 5em;
+  margin: 1rem;
+  background-color:#adc2eb;
+}
+
+.title{
+
+   padding-left:100px;
+}
+
+.restaurant{
+  border: 1px solid #e2e2e2;
+  box-shadow: 10px 10px 5px #e2e2e2;
+  padding: 1em 5em 1em 5em;
+  margin: 1rem;
+  background-color:#ebade1;
+}

@@ -1,5 +1,15 @@
 class Restaurant < ApplicationRecord
-  validates :distance, presence:true
-  validates :review, presence:true
-  validates :hours, presence:true
+  validates :name, presence: true
+  validates :image_url, presence: true
+  validates :categories, presence: true
+  validates :rating, presence: true
+  validates :address1, presence: true
+  validates :city, presence: true
+  validates :zip_code, presence: true
+  validates :country, presence: true
+  validates :state, presence: true
+  validates :display_phone, presence: true
+  validates :distance, presence: true
+  validates :price, presence: true
+  validates :review_count, presence: true
 end
