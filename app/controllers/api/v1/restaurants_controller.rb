@@ -17,7 +17,7 @@ class Api::V1::RestaurantsController < ApplicationController
     key= ENV['YELP_KEY']
 
       header = {
-        'Authorization' => "Bearer Xo_v_VUWGHl1tB_lldE14kzEkUwb7rveVXI0GvMvUyoe7ECV69Bj_FkfixqC-M_itrbIcc93tR1FfDIDq1pbiFF02XoGGD93vZUjGbX1pntuEUaY5HFQwsgfnJLZXHYx"
+        'Authorization' => "Bearer RT_mBVDVb8XFBTrjbmp_k1bdZqk0odqkRWU61kf-fAm4u_-p62nf3LUH5IjP4nBFDPAoKufkHyNUC_9cXb7MSjXIDKxQ5JStI28YZ0OFqRD93hWhpE5PEyknyXDcXHYx"
       }
       response =HTTParty.get(url, {
         headers: header
