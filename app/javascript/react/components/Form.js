@@ -92,9 +92,9 @@ class Form extends React.Component{
           <h4 className="title"> DateNight </h4>
           <h5> Enter zip code!</h5>
             <DistanceField content={this.state.distance} handleChange={ this.handleDistanceChange}/>
-              <h5>What time is your date?</h5>
+          <h5>What time is your date?</h5>
             <TimeField content={this.state.time} handleChange={ this.handleTimeChange}/>
-            <h5>What's your budget?</h5>
+          <h5>What's your budget?</h5>
             <MoneyField content={this.state.budget}handleChange={ this.handleMoneyChange} />
           <input type="submit" value="Make Date!" />
         </form>
