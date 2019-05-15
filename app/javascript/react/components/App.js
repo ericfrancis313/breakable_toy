@@ -1,7 +1,12 @@
 import React from 'react'
-
+import Form from './Form'
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+  return (
+    <div>
+    <Form/>
+    </div>
+)
+
 }
 
 export default App
