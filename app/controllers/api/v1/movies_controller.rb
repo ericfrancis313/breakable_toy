@@ -10,10 +10,10 @@
     def search
       url="https://api-gate2.movieglu.com/"
 
-      key =	sOtbcHULmSgNpeXK510d1Ql86YHKtVT53oiRlsFf
+      key =	ENV['MOVIE_KEY']
 
       header={
-        
+
       }
     end
   end
