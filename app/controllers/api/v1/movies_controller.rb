@@ -13,7 +13,18 @@
       key =	ENV['MOVIE_KEY']
 
       header={
+        client =
 
+        x-api-key=ENV['MOVIE_KEY']
+
+        authorization =>
       }
+
+      response =HTTParty.get(url, {
+        headers: header
+        })
+        
+
+      binding.pry
     end
   end

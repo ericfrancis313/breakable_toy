@@ -3,7 +3,7 @@ import DistanceField from './DistanceField'
 import TimeField from './TimeField'
 import MoneyField from './MoneyField'
 import Restaurant from './Restaurant'
-
+import Movies from './Movies'
 class Form extends React.Component{
   constructor (props){
     super(props);
@@ -99,6 +99,7 @@ class Form extends React.Component{
           <input type="submit" value="Make Date!" />
         </form>
         {restaurant}
+        {Movies}
       </div>
     )
   }
