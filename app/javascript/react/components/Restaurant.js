@@ -13,14 +13,13 @@ const Restaurant = (props) => {
     <p>
     {props.content.location.display_address[0]}
     </p>
-
     {props.content.location.display_address[1]}
-
     <p>
     {props.content.display_phone}
     </p>
+    <a href={props.content.url}> Learn more
+    </a>
   </div>
-
   );
 }
 
