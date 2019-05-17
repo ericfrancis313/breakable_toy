@@ -12,19 +12,51 @@ body
   border: 1px solid #e2e2e2;
   box-shadow: 10px 10px 5px #e2e2e2;
   padding: 1em 5em 1em 5em;
-  margin: 1rem;
+  margin: 10rem;
   background-color:#adc2eb;
 }
 
 .title{
-
-   padding-left:100px;
+  text-align: center;
 }
 
 .restaurant{
   border: 1px solid #e2e2e2;
   box-shadow: 10px 10px 5px #e2e2e2;
   padding: 1em 5em 1em 5em;
-  margin: 1rem;
+  margin: 10rem;
   background-color:#ebade1;
+}
+
+.yelpPic{
+  height: 200px;
+  width: 50%;
+}
+
+.movies{
+  text-align: center;
+}
+
+.moviepic{
+  height: 25em;
+  width: 22.5%;
+  padding: 1px;
+}
+
+.movietitle{
+  text-align: center;
+}
+
+p {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  text-rendering: optimizeLegibility;
+  text-align: center;
+}
+
+a {
+  text-align: center;
 }

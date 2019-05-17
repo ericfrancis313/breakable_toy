@@ -11,7 +11,8 @@ class Form extends React.Component{
       distance:'',
       time:'',
       budget:'',
-      restaurant:null
+      restaurant:null,
+      movies:null
 
     }
     this.handleDistanceChange=this.handleDistanceChange.bind(this)
@@ -20,6 +21,7 @@ class Form extends React.Component{
     this.clearForm = this.clearForm.bind(this)
     this.handleMoneyChange=this.handleMoneyChange.bind(this)
     this.handleRestaurantChange=this.handleRestaurantChange.bind(this)
+    this.handleMovieChange=this.handleMovieChange.bind(this)
   }
   handleDistanceChange(event){
     this.setState({distance: event.target.value})
@@ -35,6 +37,10 @@ class Form extends React.Component{
 
   handleRestaurantChange(event){
     this.setState({restaurant: event.target.value})
+  }
+
+  handleMovieChange(event){
+    this.setState({movies:event.target.value})
   }
 
   clearForm(){
@@ -57,7 +63,7 @@ class Form extends React.Component{
       .then(response => {
         if (response.ok) {
 
-          return response;
+          return response
         } else {
           let errorMessage = `${response.status}(${response.statusText})`,
           error = new Error(errorMessage);
@@ -72,18 +78,51 @@ class Form extends React.Component{
         })
       })
 
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
-    console.log(payload)
-    console.log(body)
-    console.log(this.state)
-    this.clearForm()
-  }
+      .then(
+        setTimeout((handleSubmit)=>{
+        fetch(`/api/v1/movies/search`,{
+          credentials: 'same-origin',
+          method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({date:this.state})
+        })
+      },2)
+      )
+      .then(response => {
+        if (response.ok) {
 
-  render(){
+          return response
+        } else {
+          let errorMessage = `${response.status}(${response.statusText})`,
+          error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({
+
+        })
+      })
+
+
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+
+  }
+    render(){
     let restaurant;
     if (this.state.restaurant != null){
       restaurant=(
         <Restaurant content={this.state.restaurant} handleChange={this.handleRestaurantChange} />
+      )
+    }
+    let movies;
+    if (this.state.movies != null){
+      movies=(
+        <Movies content={this.state.movies} handleChange={this.handleMovieChange} />
       )
     }
     return(
@@ -99,7 +138,6 @@ class Form extends React.Component{
           <input type="submit" value="Make Date!" />
         </form>
         {restaurant}
-        {Movies}
       </div>
     )
   }
