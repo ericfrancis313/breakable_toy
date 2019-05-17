@@ -77,8 +77,9 @@ class Form extends React.Component{
           restaurant:date[Math.floor(Math.random() * date.length)]
         })
       })
-      setTimeout(()=>{
+
       .then(
+        setTimeout((handleSubmit)=>{
         fetch(`/api/v1/movies/search`,{
           credentials: 'same-origin',
           method: "POST",
@@ -88,6 +89,7 @@ class Form extends React.Component{
           },
           body: JSON.stringify({date:this.state})
         })
+      },2)
       )
       .then(response => {
         if (response.ok) {
@@ -105,13 +107,12 @@ class Form extends React.Component{
 
         })
       })
-    },0)
+
 
       .catch(error => console.error(`Error in fetch: ${error.message}`));
-    this.clearForm()
-  }
 
-  render(){
+  }
+    render(){
     let restaurant;
     if (this.state.restaurant != null){
       restaurant=(
@@ -137,7 +138,6 @@ class Form extends React.Component{
           <input type="submit" value="Make Date!" />
         </form>
         {restaurant}
-        {movies}
       </div>
     )
   }

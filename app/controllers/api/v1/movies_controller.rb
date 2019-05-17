@@ -9,30 +9,30 @@
     end
 
     def search
-        binding.pry
-      if params["date"]['restaurant']['coordinates']['latitude'] !=
+      if params["date"]['restaurant']['coordinates']['latitude']
         lat= params["date"]['restaurant']['coordinates']['latitude']
       end
 
-      if params["date"]['restaurant']['coordinates']['longitude'] !=
+      if params["date"]['restaurant']['coordinates']['longitude']
         long= params["date"]['restaurant']['coordinates']['longitude']
       end
 
-
+      date = Time.now.strftime("%Y/%m/%d")
       zip = params["date"]["distance"]
       time = params["date"]["time"]
-      url="https://api-gate2.movieglu.com/"
+      binding.pry
+      url="https://api.amctheatres.com/v2/showtimes/views/current-location/#{lat}/#{long}/#{date}"
 
       key =	ENV['MOVIE_KEY']
-
+      binding.pry
       header = {
       'Authorization'=> "Basic #{ENV['MOVIE_AUTH']}",
-      'client' => '	LAUN',
+      'client' => 'LAUN',
       'x-api-key' =>"Bearer #{key}",
       'territory'=> "US",
       'api-version' => "v200",
-      'device-datetime' => Time.now.strftime("%Y/%m/%d #{time}"),
-      'geolocation' => "#{lat};#{long}"
+      'geolocation' => "#{lat};#{long}", 
+      'X-AMC-Vendor-Key'=> '31dd5ae1-9562-4b1f-b718-f8b1a3a97492'
       }
 
       response =HTTParty.get(url, {
@@ -40,7 +40,6 @@
         })
 
         binding.pry
-
       render json: response
     end
   end
