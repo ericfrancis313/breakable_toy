@@ -25,7 +25,6 @@ const Restaurant = (props) => {
     </p>
     <Movies/>
   </div>
-
   );
 }
 
