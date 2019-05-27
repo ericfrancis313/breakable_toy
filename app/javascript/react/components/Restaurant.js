@@ -19,7 +19,6 @@ const Restaurant = (props) => {
     <p>
       {props.content.display_phone}
     </p>
-
     <p>
       <a href={props.content.url}> Learn more! </a>
     </p>
