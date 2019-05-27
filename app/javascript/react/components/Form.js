@@ -48,8 +48,6 @@ class Form extends React.Component{
   }
 
   handleSubmit(event){
-    let payload = {date: this.state}
-    const body=JSON.stringify({payload})
     event.preventDefault()
       fetch(`/api/v1/restaurants/search`,{
         credentials: 'same-origin',
@@ -73,13 +71,14 @@ class Form extends React.Component{
       .then(response => response.json())
       .then(body => {
         let date= body["businesses"]
+         date = date[Math.floor(Math.random() * date.length)]
+        let coordinates = date.coordinates
         this.setState({
-          restaurant:date[Math.floor(Math.random() * date.length)]
+          restaurant:date
         })
+        debugger
       })
-
       .then(
-        setTimeout((handleSubmit)=>{
         fetch(`/api/v1/movies/search`,{
           credentials: 'same-origin',
           method: "POST",
@@ -89,11 +88,9 @@ class Form extends React.Component{
           },
           body: JSON.stringify({date:this.state})
         })
-      },2)
       )
       .then(response => {
         if (response.ok) {
-
           return response
         } else {
           let errorMessage = `${response.status}(${response.statusText})`,
@@ -107,8 +104,6 @@ class Form extends React.Component{
 
         })
       })
-
-
       .catch(error => console.error(`Error in fetch: ${error.message}`));
 
   }
@@ -122,7 +117,7 @@ class Form extends React.Component{
     let movies;
     if (this.state.movies != null){
       movies=(
-        <Movies content={this.state.movies} handleChange={this.handleMovieChange} />
+        <Movies content={this.state.movies} handleChange={this.handleMovieChange} coordinates={this.coordinates} />
       )
     }
     return(
