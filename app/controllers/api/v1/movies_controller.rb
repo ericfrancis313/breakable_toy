@@ -9,6 +9,7 @@
     end
 
     def search
+
       if params["date"]['restaurant']['coordinates']['latitude']
         lat= params["date"]['restaurant']['coordinates']['latitude']
       end
@@ -21,10 +22,10 @@
       zip = params["date"]["distance"]
       time = params["date"]["time"]
 
-      
       url="https://api.amctheatres.com/v2/showtimes/views/current-location/#{lat}/#{long}/#{date}"
 
       key =	ENV['MOVIE_KEY']
+
       header = {
       'Authorization'=> "Basic #{ENV['MOVIE_AUTH']}",
       'client' => 'LAUN',
@@ -40,7 +41,6 @@
         })
 
 
- 
       render json: response
     end
   end
