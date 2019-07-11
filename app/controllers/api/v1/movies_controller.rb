@@ -9,7 +9,11 @@
     end
 
     def search
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> dc994260f926f4db3793309a4b09509369505fe4
       if params["date"]['restaurant']['coordinates']['latitude']
         lat= params["date"]['restaurant']['coordinates']['latitude']
       end
@@ -21,11 +25,19 @@
       date = Time.now.strftime("%Y/%m/%d")
       zip = params["date"]["distance"]
       time = params["date"]["time"]
+<<<<<<< HEAD
 
       url="https://api.amctheatres.com/v2/showtimes/views/current-location/#{lat}/#{long}/#{date}"
 
       key =	ENV['MOVIE_KEY']
 
+=======
+      
+      url="https://api.amctheatres.com/v2/showtimes/views/current-location/#{lat}/#{long}/#{date}"
+
+      key =	ENV['MOVIE_KEY']
+      
+>>>>>>> dc994260f926f4db3793309a4b09509369505fe4
       header = {
       'Authorization'=> "Basic #{ENV['MOVIE_AUTH']}",
       'client' => 'LAUN',
@@ -40,7 +52,11 @@
         headers: header
         })
 
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> dc994260f926f4db3793309a4b09509369505fe4
       render json: response
     end
   end
